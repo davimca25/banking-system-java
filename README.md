@@ -5,6 +5,7 @@ This project simulates a real banking backend with user accounts, authentication
 
 
 ***Features***
+
 -Create bank accounts with CPF validation
 -Login system
 -Deposit and withdraw money
@@ -15,6 +16,7 @@ This project simulates a real banking backend with user accounts, authentication
 
 
 ***Architecture***
+
 The system follows a clean layered architecture:
 ---------------------------
 ConsoleUI  → User Interface  
