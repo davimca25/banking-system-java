@@ -1,8 +1,12 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Account {
     private final int number;
     private double balance;
     private boolean status;
     private final User user;
+    private List<Transactions> history = new ArrayList<>();
 
     public Account(int number, User user) {
         this.number = number;
@@ -35,6 +39,7 @@ public class Account {
             throw new IllegalArgumentException("Invalid deposit value");
         }
         balance += value;
+        history.add(new Transactions("DEPOSIT", value));
     }
 
     public void withdraw(double value) {
@@ -48,6 +53,7 @@ public class Account {
             throw new IllegalArgumentException("Insufficient balance");
         }
         balance -= value;
+        history.add(new Transactions("WITHDRAW", value));
     }
 
     public void block() {
@@ -58,5 +64,10 @@ public class Account {
         this.status = true;
     }
 
+    public void showHistory() {
+        for (Transactions t : history) {
+            System.out.println(t);
+        }
+    }
 }
 

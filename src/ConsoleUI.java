@@ -16,7 +16,8 @@ public class ConsoleUI {
             System.out.println("2 - Deposit\n");
             System.out.println("3 - Withdraw\n");
             System.out.println("4 - Show balance\n");
-            System.out.println("5 - Exit");
+            System.out.println("5 - Show history\n");
+            System.out.println("6 - Exit");
             System.out.println("-----------------");
             System.out.print("Enter option: ");
             String option = sc.nextLine();
@@ -81,6 +82,13 @@ public class ConsoleUI {
                     System.out.println("$" + currentAccount.getBalance());
                     break;
                 case "5":
+                    if (currentAccount == null) {
+                        System.out.println("No account. Create one first.");
+                        break;
+                    }
+                    currentAccount.showHistory();
+                    break;
+                case "6":
                     System.out.println("Exiting...");
                     runningUI = false;
                     break;
