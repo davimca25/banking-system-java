@@ -7,6 +7,9 @@ public class Bank {
     private int nextAccountNumber = 1;
 
     public Account createAccount(User user) {
+        if (findAccountByCpf(user.getCpf()) != null) {
+            throw new IllegalArgumentException("CPF already registered");
+        }
         Account account = new Account(nextAccountNumber, user);
         accounts.add(account);
         nextAccountNumber++;
@@ -30,5 +33,14 @@ public class Bank {
             );
         }
     }
+    public Account findAccountByCpf(String cpf) {
+        for (Account acc : accounts) {
+            if (acc.getUser().getCpf().equals(cpf)) {
+                return acc;
+            }
+        }
+        return null;
+    }
+
 
 }

@@ -65,6 +65,9 @@ public class Account {
     }
 
     public void showHistory() {
+        if (history.isEmpty()) {
+            System.out.println("No history");
+        }
         for (Transactions t : history) {
             System.out.println(t);
         }
