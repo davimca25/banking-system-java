@@ -41,6 +41,23 @@ public class Bank {
         }
         return null;
     }
+    public void transferMoney(Account from, Account to, double amount) {
+        if (from == null || to == null) {
+            throw new IllegalArgumentException("Invalid account");
+        } else if (from == to) {
+            throw new IllegalArgumentException("Cannot transfer money between same accounts");
+        } else if (amount <= 0) {
+            throw new IllegalArgumentException("Invalid amount");
+        } else if (!from.isStatus() || !to.isStatus()) {
+            throw new IllegalArgumentException("Account is not active");
+        } else if (from.getBalance() < amount) {
+            throw new IllegalArgumentException("Insufficient funds");
+        }
+        from.debit(amount);
+        to.credit(amount);
 
+        from.addTransaction("TRANSFER_OUT", amount);
+        to.addTransaction("TRANSFER_IN", amount);
+    }
 
 }

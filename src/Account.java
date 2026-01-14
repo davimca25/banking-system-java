@@ -55,7 +55,6 @@ public class Account {
         balance -= value;
         history.add(new Transactions("WITHDRAW", value));
     }
-
     public void block() {
         this.status = false;
     }
@@ -72,5 +71,16 @@ public class Account {
             System.out.println(t);
         }
     }
+    public void addTransaction(String type, double amount) {
+        history.add(new Transactions(type, amount));
+    }
+    void credit(double amount) {
+        balance += amount;
+    }
+
+    void debit(double amount) {
+        balance -= amount;
+    }
+
 }
 

@@ -1,6 +1,7 @@
 public class User {
     private String name;
     private String cpf;
+    private String password;
 
     public User(String name, String cpf) {
         if (name == null || name.trim().isEmpty()) {

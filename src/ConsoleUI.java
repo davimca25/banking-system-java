@@ -68,9 +68,10 @@ public class ConsoleUI {
                 System.out.println("-----------------");
                 System.out.println("1 - Deposit");
                 System.out.println("2 - Withdraw");
-                System.out.println("3 - Show balance");
-                System.out.println("4 - Show history");
-                System.out.println("5 - Exit");
+                System.out.println("3 - Transfer");
+                System.out.println("4 - Show balance");
+                System.out.println("5 - Show history");
+                System.out.println("6 - Exit");
                 System.out.println("-----------------");
 
                 String option2 = sc.nextLine();
@@ -78,7 +79,8 @@ public class ConsoleUI {
                 switch (option2) {
                     case "1":
                         try {
-                            double value = Double.parseDouble(sc.nextLine());
+                            System.out.println("Enter amount to deposit: ");
+                            long value = Long.parseLong(sc.nextLine());
                             currentAccount.deposit(value);
                         } catch (Exception e) {
                             System.out.println(e.getMessage());
@@ -87,22 +89,42 @@ public class ConsoleUI {
 
                     case "2":
                         try {
-                            double value = Double.parseDouble(sc.nextLine());
+                            System.out.println("Enter amount to withdraw: ");
+                            long value = Long.parseLong(sc.nextLine());
                             currentAccount.withdraw(value);
                         } catch (Exception e) {
                             System.out.println(e.getMessage());
                         }
                         break;
-
                     case "3":
-                        System.out.println(currentAccount.getBalance());
-                        break;
+                        System.out.println("User cpf to transfer: ");
+                        String target  = sc.nextLine();
 
+                        System.out.println("Enter amount to transfer:");
+                        double amount = Double.parseDouble( sc.nextLine());
+
+                        Account targetAccount = bank.findAccountByCpf(target);
+
+                        if (targetAccount == null) {
+                            System.out.println("Account not found.");
+                        } else {
+                            try {
+                                bank.transferMoney(currentAccount, targetAccount, amount);
+                                System.out.println("Transfer successful.");
+                            } catch (Exception e) {
+                                System.out.println("Error: " + e.getMessage());
+                            }
+                        }
+                        break;
                     case "4":
-                        currentAccount.showHistory();
+                        System.out.println("R$" + currentAccount.getBalance());
                         break;
 
                     case "5":
+                        currentAccount.showHistory();
+                        break;
+                    case "6":
+                        // Exit
                         runningUI = false;
                         login = true;
                         currentAccount = null;
