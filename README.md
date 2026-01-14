@@ -1,4 +1,5 @@
 ***Java Banking System***
+
 A console-based banking system built in Java using Object-Oriented Programming principles.
 This project simulates a real banking backend with user accounts, authentication, financial operations, and transaction history.
 
